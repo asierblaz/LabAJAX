@@ -104,8 +104,8 @@ echo '<html><br><div id=error class="error">Los datos de acceso no coinciden.</d
 	
 
     </section>
-	<footer class='main' id='f1'>
-		<a href='https://github.com/asierblaz/LAB2C-SW'>Link GITHUB</a>
+		<footer class='main' id='f1'>
+		<a href='https://github.com/asierblaz/LabAJAX'>Link GITHUB</a>
 	</footer>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

@@ -29,10 +29,9 @@ include "ParametrosBD.php";
 	<header class='main' id='h1'>
 		<span class="right"><a href="registrarse.php">Registrarse</a></span>
       		<span class="right"><a href="login.php">Login</a></span>
-      		<span class="right" style="display:none;"><a href="/logout">Logout</a></span>
 		<h2>Quiz: el juego de las preguntas</h2>
     </header>
-	<nav class='main' id='n1' role='navigation'>
+<nav class='main' id='n1' role='navigation'>
 	
 <?php
 				
@@ -53,6 +52,11 @@ include "ParametrosBD.php";
 				
 				echo"
 				<span><a href='VerPreguntasXML.php?mail=$email'>Ver Preguntas XML</a></spam>";
+				?>
+			<?php
+				
+				echo"
+				<span><a href='GestionPreguntas.php?mail=$email'>Gestionar Preguntas</a></spam>";
 				?>
 <?php
 				
@@ -102,11 +106,19 @@ while($imprimir=mysqli_fetch_array($resultado)){
 
 </center>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
+<script>
+	$("#logout").click(function() {
+		alert("Gracias por jugar a quiz.");
+		$(location).attr('href', 'layout.html');
+	});
+	
+</script>
 	</div>
     </section>
 	<footer class='main' id='f1'>
-		<a href='https://github.com/asierblaz/LAB2C-SW'>Link GITHUB</a>
+		<a href='https://github.com/asierblaz/LabAJAX'>Link GITHUB</a>
 	</footer>
 </div>
 </body>

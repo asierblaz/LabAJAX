@@ -119,7 +119,7 @@ include "ParametrosBD.php";
 
     </section>
 	<footer class='main' id='f1'>
-		<a href='https://github.com/asierblaz/LAB2C-SW'>Link GITHUB</a>
+		<a href='https://github.com/asierblaz/LabAJAX'>Link GITHUB</a>
 	</footer>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

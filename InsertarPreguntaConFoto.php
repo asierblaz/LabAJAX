@@ -60,6 +60,11 @@ echo $imprimir['imagen'];
 				echo"
 				<span><a href='VerPreguntasXML.php?mail=$email'>Ver Preguntas XML</a></spam>";
 				?>
+			<?php
+				
+				echo"
+				<span><a href='GestionPreguntas.php?mail=$email'>Gestionar Preguntas</a></spam>";
+				?>
 <?php
 				
 				echo"
@@ -184,7 +189,7 @@ $xml-> asXML('preguntas.xml');
 </script>
     </section>
 	<footer class='main' id='f1'>
-		<a href='https://github.com/asierblaz/LAB2C-SW'>Link GITHUB</a>
+		<a href='https://github.com/asierblaz/LabAJAX'>Link GITHUB</a>
 	</footer>
 </div>
 </body>
