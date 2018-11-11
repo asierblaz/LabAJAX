@@ -1,83 +1,9 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
-	<title>Inicio</title>
-    <link rel='stylesheet' type='text/css' href='estilos/style.css' />
-	<link rel='stylesheet' 
-		   type='text/css' 
-		   media='only screen and (min-width: 530px) and (min-device-width: 481px)'
-		   href='estilos/wide.css' />
-	<link rel='stylesheet' 
-		   type='text/css' 
-		   media='only screen and (max-width: 480px)'
-		   href='estilos/smartphone.css' />
-  </head>
-  <body>
-  <div id='page-wrap'>
-	<header class='main' id='h1'>
-      		<span class="right"><input type="button" id="logout" name="logout" value="Logout"></span>
-      	<?php 
-include "ParametrosBD.php";
 
-		$email= $_GET['mail'];
- $conexion=mysqli_connect($servidor,$usuario,$password,$basededatos);
-$sql= "SELECT imagen,nombre FROM usuarios WHERE email='$email'";
-$resultado= mysqli_query($conexion,$sql);
 
-while($imprimir=mysqli_fetch_array($resultado)){
-
-echo $imprimir['nombre'];
-?> &nbsp;&nbsp;
-
-<?php
-echo $imprimir['imagen'];
-}
-?>
-		<h2>Quiz: el juego de las preguntas</h2>
-    </header>
-   
-<nav class='main' id='n1' role='navigation'>
 	
-<?php
-				
-				echo"
-				<span><a href='layout.php?mail=$email'>Inicio</a></spam>";
-				?>
-			<?php
-				
-				echo"
-				<span><a href='preguntas.php?mail=$email'>Insertar Pregunta</a></spam>";
-				?>
-				<?php
-				
-				echo"
-				<span><a href='VerPreguntasConFoto.php?mail=$email'>Ver Preguntas</a></spam>";
-				?>
-				<?php
-				
-				echo"
-				<span><a href='VerPreguntasXML.php?mail=$email'>Ver Preguntas XML</a></spam>";
-				?>
-			<?php
-				
-				echo"
-				<span><a href='GestionPreguntas.php?mail=$email'>Gestionar Preguntas</a></spam>";
-				?>
-<?php
-				
-				echo"
-				<span><a href='creditos.php?mail=$email'>Creditos</a></spam>";
-				?>
-				
-			
-			
-	</nav>
-    <section class="main" id="s1">
-    
-	<div>
-
 
 
 
@@ -93,21 +19,16 @@ include "ParametrosBD.php";
 	("No se ha podido conectar a la Base de datos");
 	
 	//recuperar las variables
-	$email=$_POST['email'];
-	$enunciado=$_POST['enunciado'];
-	$respcorrecta=$_POST['respcorrecta'];
-	$respincorrecta1=$_POST['respincorrecta1'];
-	$respincorrecta2=$_POST['respincorrecta2'];
-	$respincorrecta3=$_POST['respincorrecta3'];
-	$complejidad=$_POST['complejidad'];
-	$tema=$_POST['tema'];
-		$dir="img";
 
-	$imagen=$_FILES['imagen']['name'];
-	$archivo= $_FILES['imagen']['tmp_name'];
-
-	$dir=$dir."/".$imagen;
-	move_uploaded_file($archivo, $dir);
+	$email=$_GET['mail'];
+	$enunciado=$_GET['enunciado'];
+	$respcorrecta=$_GET['respcorrecta'];
+	$respincorrecta1=$_GET['respincorrecta1'];
+	$respincorrecta2=$_GET['respincorrecta2'];
+	$respincorrecta3=$_GET['respincorrecta3'];
+	$complejidad=$_GET['complejidad'];
+	$tema=$_GET['tema'];
+		$dir="";
 
 $camposcorrectos=true;
 
@@ -178,19 +99,7 @@ $xml-> asXML('preguntas.xml');
 	 }
 	 ?>﻿
 
-	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script>
-	$("#logout").click(function() {
-		alert("Gracias por jugar a quiz.");
-		$(location).attr('href', 'layout.html');
-	});
-	
-</script>
-    </section>
-	<footer class='main' id='f1'>
-		<a href='https://github.com/asierblaz/LabAJAX'>Link GITHUB</a>
-	</footer>
-</div>
+
+
 </body>
 </html>

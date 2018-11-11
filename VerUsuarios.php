@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-
-<?php  
-
+	<?php 
 include "ParametrosBD.php";
 
+		$email= $_GET['mail'];
+ $conexion=mysqli_connect($servidor,$usuario,$password,$basededatos);
+$sql= "SELECT imagen,nombre FROM usuarios WHERE email='$email'";
+$resultado= mysqli_query($conexion,$sql);
 
-  		$conexion=mysqli_connect($servidor,$usuario,$password,$basededatos);
+while($imprimir=mysqli_fetch_array($resultado)){
+
+echo $imprimir['nombre'];
+?> &nbsp;&nbsp;
+
+<?php
+echo $imprimir['imagen'];
+}
 ?>
 
 
