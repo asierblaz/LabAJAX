@@ -29,17 +29,18 @@ $cont=0;
 	echo $emailrecibido;
 	echo "<html><br><br></html>";
 
+
 foreach ($xml as $preguntas) {
 
 
 $email = $preguntas['author'];
+
+
+//if ($email== $emailrecibido ){
+
 $enunciado =$xml->assessmentItem[$cont]->itemBody->p;
 
  $respcorrecta=$xml->assessmentItem[$cont]->correctResponse->value;
-
-if ($email== $emailrecibido ){
-
-
  ?>
 
 
@@ -50,9 +51,9 @@ if ($email== $emailrecibido ){
 	<td>&nbsp;&nbsp;<?php echo $respcorrecta; ?>&nbsp;&nbsp;</td>
 		
 
-
  <?php  
- $cont++;}
+ $cont++;
+//}
 }
 ?>
 

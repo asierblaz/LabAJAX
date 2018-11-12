@@ -94,21 +94,41 @@ echo $imprimir['imagen'];
 	Complejidad(0..5)*: <input type="number" name="complejidad" id="complejidad" min="0" max="5" class="entrada "required><br>
 	Tema(subject)*: <input type="text" name="tema" id="tema" class="entrada"required><br>
 
+<center> <input type="button" id="insertarpregunta" onclick="InsertQuestion()" value="Insertar Pregunta"></center> <br>
+<center> <input type="button" id="verpregunta" onclick="VerPreguntas()" value="Ver Preguntas"></center> 
 
-<center> <input type="button" id="verpregunta" onclick="insertarpregunta()"value="Ver Preguntas"></center> 
 </form>   </fieldset>
 
 	</div>
 
 <div id=infopreguntas>
 
-<div id="container"></div>
 
 
 <script>
-function insertarpregunta(){
+function VerPreguntas(){
+		$.ajax({
+		url: 'verpreguntasbymail.php?mail=<?php echo $email ?>',
 
-var enunciadoform = document.getElementById("enunciado").value;
+		beforeSend:function(){
+			
+			$('#infopreguntas').html('<div><img src="img/loading.gif" width="80"/></div>')},
+
+
+		success:function(datos){
+
+
+		$('#infopreguntas').fadeIn().html(datos);},
+		error:function(){
+			$('#infopreguntas').fadeIn().html('<p><strong>El servidor parece que no responde</p>');
+		}
+			});
+		}
+
+
+	function InsertQuestion(){
+
+		var enunciadoform = document.getElementById("enunciado").value;
 	 	var respcorrectaform = document.getElementById("respcorrecta").value;
 	 	var respin1form = document.getElementById("respincorrecta1").value;
 	 	var respin2form = document.getElementById("respincorrecta2").value;
@@ -129,45 +149,15 @@ var enunciadoform = document.getElementById("enunciado").value;
 	xmlhttp.open("GET",'InsertarPreguntaxmlbd.php?mail=<?php echo $email?>&enunciado='+enunciadoform+'.&respcorrecta='+respcorrectaform+'.&respincorrecta1='+respin1form+'.&respincorrecta2='+respin2form+'.&respincorrecta3='+respin3form+'.&complejidad='+complejidadform+
 	 		'&tema='+temaform+'.',true);
 	xmlhttp.send();
+VerPreguntas();
+	
 }
 
 
-
-
-// function VerPreguntas(){
-
-// 	 	var enunciadoform = document.getElementById("enunciado").value;
-// 	 	var respcorrectaform = document.getElementById("respcorrecta").value;
-// 	 	var respin1form = document.getElementById("respincorrecta1").value;
-// 	 	var respin2form = document.getElementById("respincorrecta2").value;
-// 	 	var respin3form = document.getElementById("respincorrecta3").value;
-// 	 	var complejidadform = document.getElementById("complejidad").value;
-// 	 	var temaform = document.getElementById("tema").value;
-
-	
-// 		$.ajax({
-// 		url: 'InsertarPreguntaxmlbd.php?mail=<?php echo $email?>&enunciado='+enunciadoform+'.&respcorrecta='+respcorrectaform+'.&respincorrecta1='+respin1form+'.&respincorrecta2='+respin2form+'.&respincorrecta3='+respin3form+'.&complejidad='+complejidadform+
-// 	 		'&tema='+temaform+'.',
-
-// 		beforeSend:function(){
-			
-// 			$('#infopreguntas').html('<div><img src="img/loading.gif" width="80"/></div>')},
-
-
-// 		success:function(datos){
-
-
-// 		$('#infopreguntas').fadeIn().html(datos);},
-// 		error:function(){
-// 			$('#infopreguntas').fadeIn().html('<p><strong>El servidor parece que no responde</p>');
-// 		}
-// 			});
-
-
-// }
 </script>
 
 </div>
+<div id=inform></div>
 	  </section>
 	<footer class='main' id='f1'>
 		<a href='https://github.com/asierblaz/LabAJAX'>Link GITHUB</a>

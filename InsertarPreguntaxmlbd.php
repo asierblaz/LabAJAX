@@ -2,9 +2,11 @@
 
 <html>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 	
 
+	
 
 
 
@@ -87,18 +89,19 @@ $xml-> asXML('preguntas.xml');
 	 if(!$ejecutar){
 
 	  echo"Ha ocurrido un error <br><a href='preguntas.html'>Volver</a>";
-	 }else{ 
+	 }
+	//  else{ 
 
-	 echo"<html> <br><html>Datos guardados correctamente en el XML<br><a href='VerPreguntasXML.php?mail=$email'>Ver las preguntas almacenadas en el XML</a>";
-	 echo"<html><br> <br><hrml>Datos guardados correctamente en la bd<br><a href='VerPreguntasConFoto.php?mail=$email'>Ver las preguntas almacenadas en la BD</a>";
-	  echo"<html><br> <br><html>¿Quieres insertar otra pregunta? <br><a href='preguntas.php?mail=$email'>Insertar pregunta</a>";
+	// echo"<html> <br><html>Datos guardados correctamente en el XML Y BD<br>";
+
+	//  } 
+
+	
 
 
-	 } 
 	 
 	 }
 	 ?>﻿
-
 
 
 </body>

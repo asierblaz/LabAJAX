@@ -94,7 +94,7 @@ echo $imprimir['imagen'];
 	Complejidad(0..5)*: <input type="number" name="complejidad" id="complejidad" min="0" max="5" class="entrada "required><br>
 	Tema(subject)*: <input type="text" name="tema" id="tema" class="entrada"required><br>
 
-<center> <input type="button" id="insertarpregunta" onclick="insertarpregunta();" value="Insertar Pregunta"></center> <br>
+<center> <input type="button" id="insertarpregunta" onclick="InsertQuestion()" value="Insertar Pregunta"></center> <br>
 <center> <input type="button" id="verpregunta" onclick="VerPreguntas()" value="Ver Preguntas"></center> 
 
 </form>   </fieldset>
@@ -106,9 +106,9 @@ echo $imprimir['imagen'];
 
 
 <script>
-function insertarpregunta(){
+function InsertQuestion(){
 
-var enunciadoform = document.getElementById("enunciado").value;
+		var enunciadoform = document.getElementById("enunciado").value;
 	 	var respcorrectaform = document.getElementById("respcorrecta").value;
 	 	var respin1form = document.getElementById("respincorrecta1").value;
 	 	var respin2form = document.getElementById("respincorrecta2").value;
@@ -154,6 +154,7 @@ function VerPreguntas(){
 </script>
 
 </div>
+
 	  </section>
 	<footer class='main' id='f1'>
 		<a href='https://github.com/asierblaz/LabAJAX'>Link GITHUB</a>

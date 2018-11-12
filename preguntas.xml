@@ -1,8 +1,9 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" ?>
+
 <assessmentItems>
 	<assessmentItem subject="Web" author="jvadillo001@ikasle.ehu.eus">
 		<itemBody>
-			<p>Tag HTML para a&#xF1;adir un formulario</p>
+			<p>Tag HTML para añadir un formulario</p>
 		</itemBody>
 		<correctResponse>
 			<value>
@@ -17,8 +18,8 @@
 	</assessmentItem>
 		<assessmentItem subject="Internet" author="rarruabarrena001@ikasle.ehu.eus">
 		<itemBody>
-			<p>Este protocolo acabar&#xE1; funcionando
-			incluso entre dos latas unidas por un cord&#xF3;n</p>
+			<p>Este protocolo acabará funcionando
+			incluso entre dos latas unidas por un cordón</p>
 		</itemBody>
 		<correctResponse>
 			<value>
@@ -31,4 +32,4 @@
 			<value> Ninguna es correcta </value>
 		</incorrectResponses>
 	</assessmentItem>
-<assessmentItem subject="nombre" author="ablazquez012@ikasle.ehu.eus"><itemBody><p>&#xBF;como se llama?</p></itemBody><correctResponse><value>pablo</value></correctResponse><incorrectResponses><value>peter</value><value>paz</value><value>pedro</value></incorrectResponses></assessmentItem><assessmentItem subject="m" author="ablazquez012@ikasle.ehu.eus"><itemBody><p>una prueba para el xml</p></itemBody><correctResponse><value>2</value></correctResponse><incorrectResponses><value>j</value><value>j</value><value>j</value></incorrectResponses></assessmentItem><assessmentItem subject="GESTION." author="ablazquez012@ikasle.ehu.eus"><itemBody><p>prueba a ver si se inserta.</p></itemBody><correctResponse><value>XML.</value></correctResponse><incorrectResponses><value>PHP.</value><value>P.</value><value>P.</value></incorrectResponses></assessmentItem><assessmentItem subject="4." author="ablazquez012@ikasle.ehu.eus"><itemBody><p>dsfdfasdffgadfgdgdsf.</p></itemBody><correctResponse><value>n.</value></correctResponse><incorrectResponses><value>nn.</value><value>n.</value><value>n.</value></incorrectResponses></assessmentItem></assessmentItems>
+</assessmentItems>
