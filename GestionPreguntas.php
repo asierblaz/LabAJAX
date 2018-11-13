@@ -83,7 +83,7 @@ echo $imprimir['imagen'];
     </div>  
      <div>
     	TOTAL PREGUNTAS / TUYAS
-    	<fieldset id="numeroPreguntas"></fieldset>
+    	<fieldset id="numeroPreguntas">Cargando...</fieldset>
     </div>
 
 	<div>
