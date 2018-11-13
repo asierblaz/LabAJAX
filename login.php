@@ -90,6 +90,10 @@ if($fila>0)
 {
     echo "<script>alert('Bienvenido al sistema ".$emailingresado."');</script>";
     //header("Location: layout.php?mail=$emailingresado");
+
+    $xml = simplexml_load_file("contador.xml");
+										$xml->value=$xml->value+1;
+										$xml->asXML('contador.xml');
     echo "<script language=Javascript> location.href=\"layout.php?mail=$emailingresado \"; </script>";
 
 }else{

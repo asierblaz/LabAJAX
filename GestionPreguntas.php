@@ -76,8 +76,21 @@ echo $imprimir['imagen'];
     <section class="main" id="s1">
     
     <h3> Gestionar Preguntas</h3>
+    
+    <div>
+    	Usuarios Conectados
+    	<fieldset id="UsuariosConectados"></fieldset>
+    </div>  
+     <div>
+    	TOTAL PREGUNTAS / TUYAS
+    	<fieldset id="numeroPreguntas"></fieldset>
+    </div>
+
 	<div>
 		
+<center> <input type="button" id="insertarpregunta" onclick="InsertQuestion()" value="Insertar Pregunta">
+<input type="button" id="verpregunta" onclick="VerPreguntas()" value="Ver Preguntas"></center> 
+
 <fieldset>
 
 <form id="fpreguntas" name="fpreguntas" method="POST" enctype="multipart/form-data" action="InsertarPreguntaConFoto.php?mail=<?php echo $email; ?>" style="background-color: white; text-align: left;">
@@ -88,14 +101,10 @@ echo $imprimir['imagen'];
 	Respuesta Incorrecta*: <input type="text" name="respincorrecta1" id="respincorrecta1" class="entrada"required><br>
 	Respuesta Incorrecta*: <input type="text" name="respincorrecta2" id="respincorrecta2" class="entrada"required><br>
 	Respuesta Incorrecta*: <input type="text" name="respincorrecta3" id="respincorrecta3" class="entrada"required><br>
-	<br>
 	<hr>
-	<br>
 	Complejidad(0..5)*: <input type="number" name="complejidad" id="complejidad" min="0" max="5" class="entrada "required><br>
 	Tema(subject)*: <input type="text" name="tema" id="tema" class="entrada"required><br>
 
-<center> <input type="button" id="insertarpregunta" onclick="InsertQuestion()" value="Insertar Pregunta"></center> <br>
-<center> <input type="button" id="verpregunta" onclick="VerPreguntas()" value="Ver Preguntas"></center> 
 
 </form>   </fieldset>
 
@@ -106,7 +115,27 @@ echo $imprimir['imagen'];
 
 
 <script>
-function InsertQuestion(){
+function VerPreguntas(){
+		$.ajax({
+		url: 'verpreguntasbymail.php?mail=<?php echo $email ?>',
+
+		beforeSend:function(){
+			
+			$('#infopreguntas').html('<div><img src="img/loading.gif" width="80"/></div>')},
+
+
+		success:function(datos){
+
+
+		$('#infopreguntas').fadeIn().html(datos);},
+		error:function(){
+			$('#infopreguntas').fadeIn().html('<p><strong>El servidor parece que no responde</p>');
+		}
+			});
+		}
+
+
+	function InsertQuestion(){
 
 		var enunciadoform = document.getElementById("enunciado").value;
 	 	var respcorrectaform = document.getElementById("respcorrecta").value;
@@ -129,32 +158,58 @@ function InsertQuestion(){
 	xmlhttp.open("GET",'InsertarPreguntaxmlbd.php?mail=<?php echo $email?>&enunciado='+enunciadoform+'.&respcorrecta='+respcorrectaform+'.&respincorrecta1='+respin1form+'.&respincorrecta2='+respin2form+'.&respincorrecta3='+respin3form+'.&complejidad='+complejidadform+
 	 		'&tema='+temaform+'.',true);
 	xmlhttp.send();
+VerPreguntas();
+	
 }
 
 
-
-function VerPreguntas(){
+function ContarPreguntas(){
 		$.ajax({
-		url: 'verpreguntasbymail.php?mail=<?php echo $email ?>',
+		url: 'ContarNumPreguntas.php?mail=<?php echo $email ?>',
 
 		beforeSend:function(){
 			
-			$('#infopreguntas').html('<div><img src="img/loading.gif" width="80"/></div>')},
+			$('#numeroPreguntas').html('<div><img src="img/loading.gif" width="30"/></div>')},
 
 
 		success:function(datos){
 
 
-		$('#infopreguntas').fadeIn().html(datos);},
+		$('#numeroPreguntas').fadeIn().html(datos);},
 		error:function(){
-			$('#infopreguntas').fadeIn().html('<p><strong>El servidor parece que no responde</p>');
+			$('#numeroPreguntas').fadeIn().html('<p><strong>El servidor parece que no responde</p>');
 		}
 			});
 		}
+
+function UsuariosConectados(){
+		$.ajax({
+		url: 'UsuariosConectados.php?mail=<?php echo $email ?>',
+
+		beforeSend:function(){
+			
+			$('#UsuariosConectados') },
+
+
+		success:function(datos){
+
+
+		$('#UsuariosConectados').fadeIn().html(datos);},
+		error:function(){
+			$('#UsuariosConectados').fadeIn().html('<p><strong>El servidor parece que no responde</p>');
+		}
+			});
+		}
+
+
+
+var tmp = setInterval(function(){ UsuariosConectados() }, 3000);
+var tmpp = setInterval(function(){ ContarPreguntas() }, 18000);
+
 </script>
 
 </div>
-
+<div id=inform></div>
 	  </section>
 	<footer class='main' id='f1'>
 		<a href='https://github.com/asierblaz/LabAJAX'>Link GITHUB</a>
@@ -162,9 +217,11 @@ function VerPreguntas(){
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <script>
-	$("#logout").click(function() {
-		alert("Gracias por jugar a quiz.");
-		$(location).attr('href', 'layout.html');
+	$("#logout").click(function() {	
+	
+	alert("Gracias por jugar a quiz.");
+
+		$(location).attr('href', 'logout.php');
 	});
 	
 </script>

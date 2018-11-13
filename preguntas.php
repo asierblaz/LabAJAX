@@ -153,8 +153,9 @@ function mostrarImagen(){
 <script>
 	$("#logout").click(function() {
 		alert("Gracias por jugar a quiz.");
-		$(location).attr('href', 'layout.html');
+		$(location).attr('href', 'logout.php');
 	});
+	
 	
 </script>
 			

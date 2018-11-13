@@ -132,8 +132,9 @@ while($imprimir=mysqli_fetch_array($resultado)){
 <script>
 	$("#logout").click(function() {
 		alert("Gracias por jugar a quiz.");
-		$(location).attr('href', 'layout.html');
+		$(location).attr('href', 'logout.php');
 	});
+	
 	
 </script>
     </section>

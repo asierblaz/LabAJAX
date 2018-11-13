@@ -24,6 +24,7 @@ include "ParametrosBD.php";
 <?php 
 $xml= simplexml_load_file('preguntas.xml');
 $cont=0;
+$mispreguntas=0;
 
 	echo "Estas son las preguntas guardadas por<html>&nbsp;</html>";
 	echo $emailrecibido;
@@ -36,8 +37,9 @@ foreach ($xml as $preguntas) {
 $email = $preguntas['author'];
 
 
-//if ($email== $emailrecibido ){
-
+if ($email== $emailrecibido ){
+  $cont++;
+}
 $enunciado =$xml->assessmentItem[$cont]->itemBody->p;
 
  $respcorrecta=$xml->assessmentItem[$cont]->correctResponse->value;
@@ -45,15 +47,16 @@ $enunciado =$xml->assessmentItem[$cont]->itemBody->p;
 
 
 <tr>
-	<td>&nbsp;&nbsp;<?php echo $cont+1;?>&nbsp;&nbsp;</td>
-	<td><br>&nbsp;&nbsp;<?php echo $email;?>&nbsp;&nbsp;<br></td>
-	<td>&nbsp;&nbsp;<?php echo $enunciado; ?>&nbsp;&nbsp;</td>
-	<td>&nbsp;&nbsp;<?php echo $respcorrecta; ?>&nbsp;&nbsp;</td>
-		
+<?php if ($email== $emailrecibido ){?><td>&nbsp;&nbsp;<?php echo $cont;?>&nbsp;&nbsp;</td> <?php } ?>
+<?php if ($email== $emailrecibido ){?><td>&nbsp;&nbsp;<?php echo $email;?>&nbsp;&nbsp;</td> <?php } ?>
+<?php if ($email== $emailrecibido ){?><td>&nbsp;&nbsp;<?php echo $enunciado;?>&nbsp;&nbsp;</td> <?php } ?>
+<?php if ($email== $emailrecibido ){?><td>&nbsp;&nbsp;<?php echo $respcorrecta;?>&nbsp;&nbsp;</td> <?php } ?>
+
+
 
  <?php  
- $cont++;
-//}
+
+
 }
 ?>
 
