@@ -7,8 +7,8 @@
 
 
   	  	<?php 
-  	  	sleep(2);
-
+  	  
+sleep(2);
 include "ParametrosBD.php";
 
 		$emailrecibido= $_GET['mail']

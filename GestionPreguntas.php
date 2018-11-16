@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
   <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
@@ -88,7 +88,7 @@ echo $imprimir['imagen'];
 
 	<div>
 		
-<center> <input type="button" id="insertarpregunta" onclick="InsertQuestion()" value="Insertar Pregunta">
+<center> <input type="button" id="insertarpregunta" value="Insertar Pregunta">
 <input type="button" id="verpregunta" onclick="VerPreguntas()" value="Ver Preguntas"></center> 
 
 <fieldset>
@@ -104,6 +104,9 @@ echo $imprimir['imagen'];
 	<hr>
 	Complejidad(0..5)*: <input type="number" name="complejidad" id="complejidad" min="0" max="5" class="entrada "required><br>
 	Tema(subject)*: <input type="text" name="tema" id="tema" class="entrada"required><br>
+		Imagen: <input id="imagen" type="file" name="imagen" onchange="mostrarImagen()"><br> <br>
+	
+<center>	<img id="argazki" name="imagen"width="80"> </center> <br>
 
 
 </form>   </fieldset>
@@ -113,38 +116,70 @@ echo $imprimir['imagen'];
 <div id=infopreguntas>
 
 
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
-function VerPreguntas(){
-		$.ajax({
-		url: 'verpreguntasbymail.php?mail=<?php echo $email ?>',
 
-		beforeSend:function(){
-			
-			$('#infopreguntas').html('<div><img src="img/loading.gif" width="80"/></div>')},
+//--------------------------------------------
+			$(function(){
+				$('#insertarpregunta').on('click', function (e){
+					e.preventDefault(); 
+					var datosForm = new FormData();
+					
+					datosForm.append('email', $('#email').prop('value'));
+					datosForm.append('enunciado', $('#enunciado').prop('value'));
+					datosForm.append('respcorrecta', $('#respcorrecta').prop('value'));
+					datosForm.append('respincorrecta1', $('#respincorrecta1').prop('value'));
+					datosForm.append('respincorrecta2', $('#respincorrecta2').prop('value'));
+					datosForm.append('respincorrecta3', $('#respincorrecta3').prop('value'));
+					datosForm.append('complejidad', $('#complejidad').prop('value'));
+					datosForm.append('tema', $('#tema').prop('value'));
+				
+					if($('#imagen').val().length==0){
+				datosForm.append('imagen',"sinimagen");
+								}else{
+					datosForm.append('imagen', $('#imagen')[0].files[0]);}
 
 
-		success:function(datos){
-
-
-		$('#infopreguntas').fadeIn().html(datos);},
-		error:function(){
-			$('#infopreguntas').fadeIn().html('<p><strong>El servidor parece que no responde</p>');
-		}
+					var destino = "InsertarPreguntaxmlbd.php"; 
+					$.ajax({
+						url: destino,
+						type: 'POST', 
+						contentType: false,
+						data: datosForm, 
+						processData: false,
+						cache: false, 
+						
+						success:function(datos){
+						$('#infopreguntas').fadeIn().html(datos);},
+						error:function(){
+						$('#infopreguntas').fadeIn().html('<p><strong>El servidor parece que no responde</p>');
+						}
+					});
+				VerPreguntas();
+				});
 			});
-		}
+
+//----------------------------------------------
 
 
-	function InsertQuestion(){
+function mostrarImagen(){
 
-		var enunciadoform = document.getElementById("enunciado").value;
-	 	var respcorrectaform = document.getElementById("respcorrecta").value;
-	 	var respin1form = document.getElementById("respincorrecta1").value;
-	 	var respin2form = document.getElementById("respincorrecta2").value;
-	 	var respin3form = document.getElementById("respincorrecta3").value;
-	 	var complejidadform = document.getElementById("complejidad").value;
-	 	var temaform = document.getElementById("tema").value;
 
+				
+	 var preview=$("#argazki")[0];
+	 var archivo = $("#imagen")[0].files[0];
+
+	 var leer = new FileReader();
+
+	 if(archivo){
+	 	leer.readAsDataURL(archivo);
+	 	leer.onloadend=function(){
+	 		preview.src=leer.result;
+
+	 	};	 }
+} 
+
+	function VerPreguntas(){
 	xmlhttp= new XMLHttpRequest();
 	xmlhttp.onreadystatechange= function()
 	{
@@ -155,10 +190,9 @@ function VerPreguntas(){
 	}
 
 	}
-	xmlhttp.open("GET",'InsertarPreguntaxmlbd.php?mail=<?php echo $email?>&enunciado='+enunciadoform+'.&respcorrecta='+respcorrectaform+'.&respincorrecta1='+respin1form+'.&respincorrecta2='+respin2form+'.&respincorrecta3='+respin3form+'.&complejidad='+complejidadform+
-	 		'&tema='+temaform+'.',true);
+	xmlhttp.open("GET",'verpreguntasbymail.php?mail=<?php echo $email?>',true);
 	xmlhttp.send();
-VerPreguntas();
+//VerPreguntas();
 	
 }
 
@@ -204,7 +238,7 @@ function UsuariosConectados(){
 
 
 var tmp = setInterval(function(){ UsuariosConectados() }, 3000);
-var tmpp = setInterval(function(){ ContarPreguntas() }, 18000);
+var tmpp = setInterval(function(){ ContarPreguntas() }, 5000);
 
 </script>
 
@@ -214,7 +248,7 @@ var tmpp = setInterval(function(){ ContarPreguntas() }, 18000);
 	<footer class='main' id='f1'>
 		<a href='https://github.com/asierblaz/LabAJAX'>Link GITHUB</a>
 	</footer>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
 
 <script>
 	$("#logout").click(function() {	

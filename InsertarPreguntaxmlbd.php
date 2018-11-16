@@ -22,15 +22,24 @@ include "ParametrosBD.php";
 	
 	//recuperar las variables
 
-	$email=$_GET['mail'];
-	$enunciado=$_GET['enunciado'];
-	$respcorrecta=$_GET['respcorrecta'];
-	$respincorrecta1=$_GET['respincorrecta1'];
-	$respincorrecta2=$_GET['respincorrecta2'];
-	$respincorrecta3=$_GET['respincorrecta3'];
-	$complejidad=$_GET['complejidad'];
-	$tema=$_GET['tema'];
-		$dir="";
+	$email=$_POST['email'];
+	$enunciado=$_POST['enunciado'];
+	$respcorrecta=$_POST['respcorrecta'];
+	$respincorrecta1=$_POST['respincorrecta1'];
+	$respincorrecta2=$_POST['respincorrecta2'];
+	$respincorrecta3=$_POST['respincorrecta3'];
+	$complejidad=$_POST['complejidad'];
+	$tema=$_POST['tema'];
+	$dir="img/nofoto.gif";
+if ($_POST['imagen']!= "sinimagen"){
+			
+	$dir="img";
+
+$imagen=$_FILES['imagen']['name'];
+$archivo= $_FILES['imagen']['tmp_name'];
+
+	$dir=$dir."/".$imagen;
+move_uploaded_file($archivo, $dir);}
 
 $camposcorrectos=true;
 
